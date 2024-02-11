@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Number Guessing Game</h1>
-    <p>Guess a number between 1 and 100:</p>
-    <input type="number" id="userGuess" min="1" max="100">
-    <button onclick="checkGuess()">GO</button>
-    <p id="result"></p>
-    <button onclick="resetGame()">RESET</button>
+    <h1>숫자 맞추기 게임</h1>
+    
+    <div class="container">    
 
+    <div>
+    <div>1~100 사이의 숫자를 맞혀보세요!</div>
+    </div>
+
+    <div>
+    <img id="feedback-image" src="images/main.webp" class="img-size">
+    </div>
+
+    <div>
+    <input type="number" id="input-number">
+    <button id="button-area">Go</button>
+    <button id="reset-area">RESET</button>
+    </div>
+
+    <div>
+    <div id="result-area">결과: </div>
+    </div>
+
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
