@@ -7,27 +7,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+    <div>
+
+    <nav>
     <h1>숫자 맞추기 게임</h1>
     
-    <div class="container">    
+    </nav>
+
+    <main class="container">    
 
     <div>
-    <div>1~100 사이의 숫자를 맞혀보세요!</div>
+    <h3 class="headline">1~100 사이의 숫자를 맞혀보세요!</h3>
     </div>
+
+    <div>
+        <h3 id="result-area" class="headline">도전 시작! </h3>
+        </div>
+        <div>
+        <input type="number" id="input-number">
+        <button id="button-area">Go</button>
+        <button id="reset-area">RESET</button>
+        </div>
+    
+
 
     <div>
     <img id="feedback-image" src="images/main.webp" class="img-size">
     </div>
 
-    <div>
-    <input type="number" id="input-number">
-    <button id="button-area">Go</button>
-    <button id="reset-area">RESET</button>
-    </div>
 
-    <div>
-    <div id="result-area">결과: </div>
-    </div>
+
+    </main>
 
     </div>
     <script src="main.js"></script>

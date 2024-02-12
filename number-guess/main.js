@@ -19,9 +19,6 @@ function randomNumGen() {
 randomNumGen();
 console.log("정답:", computerNum);
 
-33;
-
-33;
 
 let numArea = document.getElementById("input-number");
 let buttonArea = document.getElementById("button-area");
@@ -29,6 +26,7 @@ let resetArea = document.getElementById("reset-area");
 let resultArea = document.getElementById("result-area");
 let imageArea = document.getElementById("feedback-image");
 let count = 7;
+let history = [];
 
 buttonArea.addEventListener("click", play);
 resetArea.addEventListener("click", reset);
@@ -37,6 +35,13 @@ numArea.addEventListener("focus", function () {
 });
 
 function play() {
+
+  if ( history.includes(numArea.value) ){
+    resultArea.textContent = "이미 입력한 번호입니다!!";
+    return;
+  }
+
+  
   count--;
   if (numArea.value > 100 || numArea.value < 1) {
     resultArea.textContent = "1~100사이의 숫자만 입력 가능합니다.";
@@ -54,7 +59,8 @@ function play() {
     gameEnd();
   }
 
-  
+  history.push(numArea.value)
+
   if (count < 1) {
     gameEnd();
     resultArea.textContent = "7번 모두 실패하였습니다.";
@@ -73,4 +79,9 @@ function reset() {
   count = 7;
   randomNumGen();
   console.log("정답:", computerNum);
+  imageArea.src = "images/main.webp"
+  resultArea.textContent = ""
+  numArea.value = "";
+  resultArea.textContent = "도전 시작!";
+  history = [];
 }
