@@ -1,0 +1,43 @@
+
+body {
+    margin: 0;  /* 기본 8px이 되어 있으므로 없애기 */
+    background-image: url("images/todo-app-background.webp"); /* 배경 이미지 선택 */
+    background-repeat: no-repeat; /* 사진 한번만 사용 */
+    background-size: cover;       /* 전체 화면에 확대 */
+}
+
+.container{
+    background-color: white;
+    min-height: 100vh;
+}
+
+.task-area{
+    border: 1px solid lightgray;
+}
+
+.task-tabs{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    position: relative;
+}
+
+.task-tabs div{
+    padding: 1em;
+
+}
+
+.tasks{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+#under-line{
+    height: 4px;
+    background-color: pink;
+    position: absolute;  
+    width: 70px;
+    left: 0px;
+    top: 40px;
+    padding: 0px;  /* div에 기본 패딩 값이 있어서 0으로 설정 */
+}
