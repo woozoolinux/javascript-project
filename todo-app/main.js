@@ -14,24 +14,64 @@ let taskList = [];  // 할 일을 담을 배열 생성
 buttonArea.addEventListener("click", addTask);
 
 function addTask(){
-    taskList.push(inputArea.value)
+    let task = {
+        id: generateRandomId(),
+        taskContent: inputArea.value,
+        isComplete: false
+    }
+    taskList.push(task)
     console.log(taskList)
     render();
 }
 
 function render(){
+
     let resultHTML = '';
 
     for (let i = 0; i < taskList.length; i++){
-        resultHTML += `<div class="tasks">
-        <div>${taskList[i]}</div>
+        if (taskList[i].isComplete == true){
+            resultHTML += `<div class="tasks">
+        <div class="task-done">${taskList[i].taskContent}</div>
         <div>
-            <button>Check</button>
-            <button>Delete</button>
+            <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
+            <button onclick="taskDelete('${taskList[i].id}')">Delete</button>
         </div>
     </div>`;
-        
+        } else {
+        resultHTML += `<div class="tasks">
+        <div>${taskList[i].taskContent}</div>
+        <div>
+            <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
+            <button onclick="taskDelete('${taskList[i].id}')">Delete</button>
+        </div>
+    </div>`;
+    }
     }
 
-    document.getElementById("task-board").innerHTML = resultHTML; 
+    document.getElementById("task-board").innerHTML = resultHTML;
+}
+
+function toggleComplete(id){
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].id == id){
+            taskList[i].isComplete = !taskList[i].isComplete;
+            render();
+            break;
+        }
+    }
+}
+
+function taskDelete(id){
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].id == id){
+            taskList.splice(i, 1);
+            render();
+            break;
+        }
+    }
+}
+
+function generateRandomId(prefix = 'task') {
+    // 현재 시간과 랜덤 값을 기반으로 ID 생성
+    return `${prefix}_${Math.random().toString(36).substring(2, 9)}_${Date.now()}`;
 }

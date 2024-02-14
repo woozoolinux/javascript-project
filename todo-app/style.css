@@ -41,3 +41,7 @@ body {
     top: 40px;
     padding: 0px;  /* div에 기본 패딩 값이 있어서 0으로 설정 */
 }
+
+.task-done{
+    text-decoration: line-through;
+}
