@@ -11,6 +11,33 @@ body {
     min-height: 100vh;
 }
 
+h1 {
+    font-weight: bold; /* 굵은 글씨 */
+    text-align: center; /* 가운데 정렬 */
+    font-family: 'Roboto', sans-serif; /* Google Fonts에서 제공하는 Roboto 폰트 사용 */
+    font-size: 2.5rem; /* 폰트 크기 조절 */
+    color: #333; /* 글씨 색상 조절 */
+    margin: 1rem;
+    padding-top: 20px
+}
+
+#input-text {
+    width: 50%;
+    padding: 3px 15px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#input-text:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+
 .task-area{
     border: 1px solid lightgray;
 }
@@ -23,8 +50,16 @@ body {
 
 .task-tabs div{
     padding: 1em;
-
+    font-weight: bold;
+    color: #555;
 }
+
+.task-tabs div:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+
 
 .tasks{
     display: flex;
@@ -34,7 +69,7 @@ body {
 
 #under-line{
     height: 4px;
-    background-color: pink;
+    background-color: #007bff;
     position: absolute;  
     width: 70px;
     left: 0px;
@@ -44,4 +79,35 @@ body {
 
 .task-done{
     text-decoration: line-through;
+}
+
+.task-tabs div{
+    cursor: pointer;
+  }
+
+/* 공통 버튼 스타일 */
+button {
+    padding: 0.5rem 1rem; /* 버튼 내부 여백 */
+    font-size: 1rem; /* 글자 크기 */
+    border: none; /* 테두리 없앰 */
+    border-radius: 5px; /* 모서리를 둥글게 */
+    cursor: pointer; /* 마우스 오버 시 커서 변경 */
+    transition: background-color 0.3s; /* 배경 색상 변화 애니메이션 */
+}
+
+/* Check 버튼 스타일 */
+button[onclick*="toggleComplete"] {
+    background-color: #4CAF50; /* 밝은 녹색 배경 */
+    color: white; /* 텍스트 색상 */
+}
+
+/* Delete 버튼 스타일 */
+button[onclick*="taskDelete"] {
+    background-color: #f44336; /* 밝은 빨간색 배경 */
+    color: white; /* 텍스트 색상 */
+}
+
+/* 버튼 호버 효과 */
+button:hover {
+    opacity: 0.8; /* 버튼에 마우스를 올리면 투명도 변경 */
 }

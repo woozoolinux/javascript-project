@@ -9,9 +9,21 @@
 
 let inputArea = document.getElementById("input-text");
 let buttonArea = document.getElementById("button-area");
+let tabs = document.querySelectorAll(".task-tabs div");
 let taskList = [];  // 할 일을 담을 배열 생성
+let filterList = [];
+let mode;
 
+inputArea.addEventListener("focus", function(){ this.value = ""})
 buttonArea.addEventListener("click", addTask);
+
+console.log(tabs)
+
+for (let i=1;i < tabs.length; i++){
+    tabs[i].addEventListener("click", function(event) {
+        filter(event);
+    });
+}
 
 function addTask(){
     let task = {
@@ -25,24 +37,31 @@ function addTask(){
 }
 
 function render(){
+    console.log("current mode", mode)
+    list = taskList;
+    if (mode == "all") {
+        list = taskList;
+    } else if (mode == "ongoing" || mode == "done") {
+        list = filterList;
+    }
 
     let resultHTML = '';
 
-    for (let i = 0; i < taskList.length; i++){
-        if (taskList[i].isComplete == true){
+    for (let i = 0; i < list.length; i++){
+        if (list[i].isComplete == true){
             resultHTML += `<div class="tasks">
-        <div class="task-done">${taskList[i].taskContent}</div>
+        <div class="task-done">${list[i].taskContent}</div>
         <div>
-            <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
-            <button onclick="taskDelete('${taskList[i].id}')">Delete</button>
+            <button onclick="toggleComplete('${list[i].id}')">Check</button>
+            <button onclick="taskDelete('${list[i].id}')">Delete</button>
         </div>
     </div>`;
         } else {
         resultHTML += `<div class="tasks">
-        <div>${taskList[i].taskContent}</div>
+        <div>${list[i].taskContent}</div>
         <div>
-            <button onclick="toggleComplete('${taskList[i].id}')">Check</button>
-            <button onclick="taskDelete('${taskList[i].id}')">Delete</button>
+            <button onclick="toggleComplete('${list[i].id}')">Check</button>
+            <button onclick="taskDelete('${list[i].id}')">Delete</button>
         </div>
     </div>`;
     }
@@ -51,11 +70,12 @@ function render(){
     document.getElementById("task-board").innerHTML = resultHTML;
 }
 
+
 function toggleComplete(id){
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id == id){
             taskList[i].isComplete = !taskList[i].isComplete;
-            render();
+            secondFIlter();
             break;
         }
     }
@@ -65,13 +85,79 @@ function taskDelete(id){
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id == id){
             taskList.splice(i, 1);
-            render();
+            secondFIlter();
             break;
         }
     }
 }
 
+
+function filter(event){
+
+    mode = event.target.id;
+
+    var underline = document.getElementById('under-line'); // under-line 요소 가져오기
+
+    // 모드에 따라 under-line의 색상 변경
+    if (mode == "all") {
+        underline.style.left = '0px'; // 전체 탭의 밑줄 CSS
+    } else if (mode == "ongoing") {
+        underline.style.left = '70px'; // 진행 중 탭의 밑줄 CSS
+    } else if (mode == "done") {
+        underline.style.left = '140px'; // 끝남 탭의 밑줄 CSS
+    }
+    
+    if (mode == "all") {
+        render();
+    } else if(mode == "ongoing") {
+        filterList = [];
+        for (let i = 0; i < taskList.length; i++){
+            if (taskList[i].isComplete == false){
+                filterList.push(taskList[i])
+            }
+            
+        }
+        render();
+    } else if (mode == "done"){
+        filterList = [];
+        for (let i = 0; i < taskList.length; i++){
+            if (taskList[i].isComplete == true){
+                filterList.push(taskList[i])
+            }
+            
+         } 
+         render();
+    }
+
+}
+
 function generateRandomId(prefix = 'task') {
     // 현재 시간과 랜덤 값을 기반으로 ID 생성
     return `${prefix}_${Math.random().toString(36).substring(2, 9)}_${Date.now()}`;
+}
+
+function secondFIlter(){
+
+    if (mode == "all") {
+        render();
+    } else if(mode == "ongoing") {
+        filterList = [];
+        for (let i = 0; i < taskList.length; i++){
+            if (taskList[i].isComplete == false){
+                filterList.push(taskList[i])
+            }
+            
+        }
+        render();
+    } else if (mode == "done"){
+        filterList = [];
+        for (let i = 0; i < taskList.length; i++){
+            if (taskList[i].isComplete == true){
+                filterList.push(taskList[i])
+            }
+            
+         } 
+         render();
+    }
+
 }
