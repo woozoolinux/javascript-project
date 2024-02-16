@@ -1,0 +1,52 @@
+body{
+    background-image: url("images/skyandcloud.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.header{
+    text-align: center;
+
+}
+
+section{
+    background-color: white;
+    min-height: 100vh;
+}
+
+.middle-tab{
+    display: flex;
+    position: relative;
+    border-bottom: 2px solid gray;
+    margin: 10px;
+}
+
+.middle-tab div{
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: darkgray;
+    margin: 10px 0;
+}
+
+#under-line{
+    height: 4px;
+    background-color: pink;
+    position: absolute;  
+    width: 65px;
+    left: 0px;
+    top: 40px;
+    padding: 0px;  
+}
+
+.task-container {
+    display: flex; /* Flexbox를 활성화 */
+    justify-content: space-between; /* 요소들 사이에 공간을 균등하게 배분 */
+    align-items: center; /* 세로축 중앙 정렬 */
+    padding: 10px; /* 내부 여백 추가 */
+}
+
+.real-task{
+    text-decoration: line-through;
+}
