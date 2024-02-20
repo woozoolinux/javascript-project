@@ -1,5 +1,5 @@
 
-//const API_KEY='021e05a5adf6492e929715a91c5e8765'
+const API_KEY='021e05a5adf6492e929715a91c5e8765'
 let news=[];
 
 // 비동기 함수를 이용, await 사용할 때 필요
